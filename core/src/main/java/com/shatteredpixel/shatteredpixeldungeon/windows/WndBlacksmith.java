@@ -110,7 +110,7 @@ public class WndBlacksmith extends Window {
 		pickaxe.enable(Blacksmith.Quest.pickaxe != null && Blacksmith.Quest.favor >= pickaxeCost);
 		buttons.add(pickaxe);
 
-		int reforgecost = 500 + 1000*Blacksmith.Quest.reforges;
+		int reforgecost = 500 + 500*Blacksmith.Quest.reforges;
 		RedButton reforge = new RedButton(Messages.get(this, "reforge", reforgecost), 6){
 			@Override
 			protected void onClick() {
@@ -120,7 +120,7 @@ public class WndBlacksmith extends Window {
 		reforge.enable(Blacksmith.Quest.favor >= reforgecost);
 		buttons.add(reforge);
 
-		int hardenCost = 500 + 1000*Blacksmith.Quest.hardens;
+		int hardenCost = 500 + 500*Blacksmith.Quest.hardens;
 		RedButton harden = new RedButton(Messages.get(this, "harden", hardenCost), 6){
 			@Override
 			protected void onClick() {
@@ -295,7 +295,7 @@ public class WndBlacksmith extends Window {
 					Badges.validateItemLevelAquired( first );
 					Item.updateQuickslot();
 
-					Blacksmith.Quest.favor -= 500 + 1000*Blacksmith.Quest.reforges;
+					Blacksmith.Quest.favor -= 500 + 500*Blacksmith.Quest.reforges;
 					Blacksmith.Quest.reforges++;
 
 					if (!Blacksmith.Quest.rewardsAvailable()){
@@ -391,7 +391,7 @@ public class WndBlacksmith extends Window {
 					((Armor) item).glyphHardened = true;
 				}
 
-				Blacksmith.Quest.favor -= 500 + 1000*Blacksmith.Quest.hardens;
+				Blacksmith.Quest.favor -= 500 + 500*Blacksmith.Quest.hardens;
 				Blacksmith.Quest.hardens++;
 
 				WndBlacksmith.this.hide();
@@ -430,7 +430,7 @@ public class WndBlacksmith extends Window {
 		public void onSelect(Item item) {
 			if (item != null) {
 				item.upgrade();
-				int upgradeCost = 1000 + 1000*Blacksmith.Quest.upgrades;
+				int upgradeCost = 1000 + 500*Blacksmith.Quest.upgrades;
 				Blacksmith.Quest.favor -= upgradeCost;
 				Blacksmith.Quest.upgrades++;
 

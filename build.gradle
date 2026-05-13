@@ -15,7 +15,7 @@ allprojects {
         appPackageName = 'com.silltop.pixeldungeon'
 
         appVersionCode = 897
-        appVersionName = '3.3.9'
+        appVersionName = '3.3.10'
 
         appJavaCompatibility = JavaVersion.VERSION_11
 

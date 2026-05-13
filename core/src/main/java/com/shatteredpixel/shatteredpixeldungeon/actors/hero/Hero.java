@@ -403,7 +403,7 @@ public class Hero extends Char {
 			return 0;
 		} else if (buff(PotionOfDivineInspiration.DivineInspirationTracker.class) != null
 					&& buff(PotionOfDivineInspiration.DivineInspirationTracker.class).isBoosted(tier)) {
-			return 3;
+			return 2 + tier; // tier 1→3, tier 2→4, tier 3→5, tier 4→6
 		} else {
 			return 0;
 		}
