@@ -363,15 +363,18 @@ public class WndRanking extends WndTabbed {
 			if (stuff.artifact != null) {
 				addItem( stuff.artifact );
 			}
+			if (stuff.artifact2 != null) {
+				addItem( stuff.artifact2 );
+			}
 			if (stuff.misc != null) {
 				addItem( stuff.misc );
 			}
 			if (stuff.ring != null) {
 				addItem( stuff.ring );
 			}
-
-			pos = 0;
-
+				if (stuff.ring2 != null) {
+					addItem( stuff.ring2 );
+				}
 			int slotsActive = 0;
 			for (int i = 0; i < QuickSlot.SIZE; i++){
 				if (Dungeon.quickslot.isNonePlaceholder(i)){

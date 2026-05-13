@@ -220,6 +220,10 @@ public abstract class Level implements Bundlable {
 		if (!Dungeon.bossLevel() && Dungeon.branch == 0) {
 
 			addItemToSpawn(Generator.random(Generator.Category.FOOD));
+			//extra food for sewer (depth 1-4) and prison (depth 6-9) due to more rooms
+			if (Dungeon.depth <= 4 || (Dungeon.depth >= 6 && Dungeon.depth <= 9)) {
+				addItemToSpawn(Generator.random(Generator.Category.FOOD));
+			}
 
 			if (Dungeon.posNeeded()) {
 				Dungeon.LimitedDrops.STRENGTH_POTIONS.count++;

@@ -44,6 +44,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRage;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRemoveCurse;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTerror;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Catalog;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -141,6 +142,19 @@ public class UnstableSpellbook extends Artifact {
 		charge--;
 
 		Scroll scroll;
+		//~5% chance to cast a scroll of upgrade
+		if (Random.Int(20) == 0) {
+			scroll = new ScrollOfUpgrade();
+			scroll.anonymize();
+			scroll.talentChance = 0;
+			curItem = scroll;
+			curUser = hero;
+			checkForArtifactProc(curUser, scroll);
+			scroll.doRead();
+			Talent.onArtifactUsed(Dungeon.hero);
+			updateQuickslot();
+			return;
+		}
 		do {
 			scroll = (Scroll) Generator.randomUsingDefaults(Generator.Category.SCROLL);
 		} while (scroll == null
