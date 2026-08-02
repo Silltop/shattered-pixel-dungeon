@@ -126,11 +126,12 @@ public abstract class RegularLevel extends Level {
 		initRooms.add ( roomEntrance = EntranceRoom.createEntrance());
 		initRooms.add( roomExit = ExitRoom.createExit());
 
-		//force max standard rooms and multiple by 1.5x for large levels
+		//force max standard rooms and multiple by 1.5x for large levels, plus one extra normal room
 		int standards = standardRooms(feeling == Feeling.LARGE);
 		if (feeling == Feeling.LARGE){
 			standards = (int)Math.ceil(standards * 1.5f);
 		}
+		standards += 1;
 		for (int i = 0; i < standards; i++) {
 			StandardRoom s;
 			do {

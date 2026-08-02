@@ -101,7 +101,6 @@ public class UnstableSpellbook extends Artifact {
 
 			i = Random.chances(probs);
 		}
-		scrolls.remove(ScrollOfTransmutation.class);
 	}
 
 	@Override
@@ -158,12 +157,12 @@ public class UnstableSpellbook extends Artifact {
 		do {
 			scroll = (Scroll) Generator.randomUsingDefaults(Generator.Category.SCROLL);
 		} while (scroll == null
-				//reduce the frequency of these scrolls by half
+				//reduce the frequency of these scrolls by 25%
 				||((scroll instanceof ScrollOfIdentify ||
 				scroll instanceof ScrollOfRemoveCurse ||
-				scroll instanceof ScrollOfMagicMapping) && Random.Int(2) == 0)
-				//cannot roll transmutation
-				|| (scroll instanceof ScrollOfTransmutation));
+				scroll instanceof ScrollOfMagicMapping) && Random.Int(4) == 0)
+				//reduce the frequency of rage and transmutation by half
+				|| ((scroll instanceof ScrollOfRage || scroll instanceof ScrollOfTransmutation) && Random.Int(2) == 0));
 
 		scroll.anonymize();
 		scroll.talentChance = 0;  //spellbook does not trigger on-scroll talents
@@ -277,7 +276,7 @@ public class UnstableSpellbook extends Artifact {
 	@Override
 	public void charge(Hero target, float amount) {
 		if (charge < chargeCap && !cursed && target.buff(MagicImmune.class) == null){
-			partialCharge += 0.1f*amount;
+			partialCharge += 0.11f*amount;
 			while (partialCharge >= 1){
 				partialCharge--;
 				charge++;
@@ -361,7 +360,7 @@ public class UnstableSpellbook extends Artifact {
 					&& target.buff(MagicImmune.class) == null
 					&& Regeneration.regenOn()) {
 				//120 turns to charge at full, 80 turns to charge at 0/8
-				float chargeGain = 1 / (120f - (chargeCap - charge)*5f);
+				float chargeGain = 1.1f / (120f - (chargeCap - charge)*5f);
 				chargeGain *= RingOfEnergy.artifactChargeMultiplier(target);
 				partialCharge += chargeGain;
 

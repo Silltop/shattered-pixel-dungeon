@@ -137,6 +137,9 @@ public class Dungeon {
 		POTION_BANDOLIER,
 		MAGICAL_HOLSTER,
 
+		//guaranteed early ring
+		SEWER_RING,
+
 		//lore documents
 		LORE_SEWERS,
 		LORE_PRISON,
@@ -584,6 +587,11 @@ public class Dungeon {
 	public static boolean trinketCataNeeded(){
 		//one trinket catalyst on floors 1-3
 		return depth < 5 && !LimitedDrops.TRINKET_CATA.dropped() && Random.Int(4-depth) == 0;
+	}
+
+	public static boolean sewerRingNeeded(){
+		//one guaranteed ring on floors 1-4
+		return depth >= 1 && depth <= 4 && !LimitedDrops.SEWER_RING.dropped() && Random.Int(5-depth) == 0;
 	}
 
 	public static boolean labRoomNeeded(){
